@@ -1,0 +1,35 @@
+- hosts: localhost
+  tasks:
+   - name: Install Django
+     pip: name=Django
+   - name:  Install PIL
+     pip: name=Pillow
+   - name: Install Django Messages
+     pip: name=https://github.com/arneb/django-messages/archive/master.zip
+   - name: Install Django REST Framework
+     pip: name=djangorestframework
+   - name: Install Django-Resized
+     pip: name=django-resized
+   - name: Update Django Guardian
+     pip: name=django-guardian extra_args='--upgrade'
+   - name: Install Gunicorn
+     pip: name=gunicorn
+   - name: Install Whitenoise
+     pip: name=whitenoise
+   - name: Install requests
+     pip: name=requests
+   - name: Copy startup.sh
+     copy: src=../../housekeeping/startup.sh dest=../../startup.sh mode=0755
+
+
+  #  - name: Configure Nginx
+  #    copy: src=/test/nginxconf/newconfig.conf dest=/etc/nginx/sites-enabled/default
+  #    notify:
+  #     - Start Nginx
+
+  # handlers:
+  #  - name: Start Nginx
+  #    service: name=nginx state=started
+
+  #  - name: Restart Nginx
+  #    service: name=nginx state=reloaded
